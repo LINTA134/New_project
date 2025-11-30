@@ -1,0 +1,357 @@
+/* === global.css : 評判実験用スタイル === */
+
+/* --- 1. 全体レイアウト --- */
+body {
+    font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
+    background-color: #F9F9F9;
+    color: #454545;
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+.experiment-container {
+    width: 100%;
+    max-width: 840px; /* カード4枚並びに対応するため少し広めに */
+    background-color: #FFFFFF;
+    border: 1px solid #E0E0E0;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+/* SVGアイコン（非表示定義用） */
+.icon-svg {
+    width: 0; height: 0; position: absolute; display: none;
+}
+
+/* --- 2. 進捗インジケーター --- */
+.progress-tabs {
+    background-color: #F9F9F9;
+    border-bottom: 1px solid #E0E0E0;
+}
+.tab-button {
+    padding: 12px 16px;
+    font-size: 0.9em;
+    font-weight: bold;
+    text-align: center;
+    color: #3B95C4;
+    background-color: #FFFFFF;
+    border-bottom: 2px solid #3B95C4;
+}
+
+.progress-content {
+    background-color: #FFFFFF;
+    border-bottom: 1px solid #E0E0E0;
+}
+.progress-steps {
+    display: flex;
+    justify-content: space-around;
+    padding: 16px 12px;
+}
+.step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #E0E0E0;
+    font-size: 0.8em;
+    font-weight: bold;
+    flex: 1;
+    text-align: center;
+}
+.step .step-number {
+    width: 24px; height: 24px;
+    border-radius: 50%;
+    background-color: #E0E0E0;
+    color: #FFFFFF;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 4px;
+}
+/* 完了済みステップ */
+.step.completed { color: #454545; }
+.step.completed .step-number { background-color: #454545; }
+/* 現在のステップ */
+.step.current { color: #3B95C4; }
+.step.current .step-number { background-color: #3B95C4; }
+
+
+/* --- 3. コンテンツエリア --- */
+.content-area {
+    padding: 32px;
+    flex: 1;
+}
+.content-area h2 {
+    font-size: 1.5em;
+    color: #000000;
+    border-bottom: 2px solid #E0E0E0;
+    padding-bottom: 12px;
+    margin-top: 0;
+    margin-bottom: 24px;
+}
+.rule-box {
+    padding: 20px;
+    margin: 24px 0;
+    border: 1px solid #E0E0E0;
+    border-radius: 8px;
+    background-color: #F9F9F9;
+}
+.rule-box h4 {
+    margin-top: 0;
+    color: #333;
+    border-left: 4px solid #3B95C4;
+    padding-left: 8px;
+}
+
+/* --- 4. キャラクターアイコン & カード --- */
+/* ガイドラインに基づく配色 */
+.icon-a { background-color: #F81B02; } /* 起業家A (赤) */
+.icon-b { background-color: #50C49F; } /* 起業家B (シアン) */
+.icon-c { background-color: #AFBF41; } /* 起業家C (緑) */
+.icon-x { background-color: #FC7715; } /* 起業家X (オレンジ) */
+.icon-user { background-color: #B560D4; } /* 参加者 (紫) */
+
+.profile-card {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.profile-card .icon {
+    width: 48px; height: 48px;
+    border-radius: 8px;
+    display: flex; justify-content: center; align-items: center;
+    margin-bottom: 8px;
+}
+.profile-card .icon svg {
+    width: 60%; height: 60%; fill: #454545;
+}
+.profile-card .name {
+    font-weight: bold;
+    font-size: 0.9em;
+}
+
+/* 評判情報のサマリー (GossipStimuli用) */
+.reputation-summary-container {
+    display: flex;
+    justify-content: space-around;
+    background-color: #F0F0F0;
+    padding: 16px;
+    border-radius: 8px;
+    margin-bottom: 32px;
+}
+.reputation-text {
+    font-size: 0.8em;
+    color: #666;
+    margin-top: 4px;
+}
+
+/* --- 5. 投資カード (GossipStimuli用) --- */
+.investment-card {
+    border: 1px solid #E0E0E0;
+    border-radius: 8px;
+    overflow: hidden;
+    height: 100%;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+.investment-card .card-header {
+    padding: 12px;
+    font-weight: bold;
+    color: #454545;
+    background-color: #F9F9F9;
+    border-bottom: 1px solid #E0E0E0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.investment-card .card-header .icon {
+    width: 24px; height: 24px;
+    border-radius: 4px;
+    display: flex; justify-content: center; align-items: center;
+}
+.investment-card .card-header .icon svg {
+    width: 70%; height: 70%; fill: #fff; /* ヘッダー内のアイコンは白抜き */
+}
+.investment-card .card-body {
+    padding: 16px;
+}
+
+/* カード固有のヘッダー色（うっすらと背景色をつける場合） */
+.card-cooperative .card-header { border-top: 4px solid #F81B02; }
+.card-selfish .card-header     { border-top: 4px solid #50C49F; }
+.card-neutral .card-header     { border-top: 4px solid #AFBF41; }
+.card-gossip .card-header      { border-top: 4px solid #FC7715; }
+
+
+/* --- 6. 予算枠バッジ --- */
+.badge-limit {
+    display: inline-block;
+    padding: 6px 10px;
+    margin: 4px;
+    border-radius: 4px;
+    font-size: 0.85em;
+    font-weight: bold;
+    color: #fff;
+}
+.limit-4000 { background-color: #007bff; }
+.limit-3000 { background-color: #28a745; }
+.limit-2000 { background-color: #ffc107; color: #333; }
+.limit-1000 { background-color: #6c757d; }
+
+
+/* --- 7. ゴシップ吹き出し --- */
+.gossip-illustrator {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin: 16px 0;
+}
+.speech-bubble {
+    position: relative;
+    background: #E3F2FD; /* 薄い青 */
+    border-radius: 8px;
+    padding: 12px;
+    font-size: 0.9em;
+    color: #0d47a1;
+    flex: 1;
+}
+/* 吹き出しのしっぽ */
+.speech-bubble::after {
+    content: '';
+    position: absolute;
+    left: -8px;
+    top: 16px;
+    width: 0; height: 0;
+    border-top: 8px solid transparent;
+    border-bottom: 8px solid transparent;
+    border-right: 8px solid #E3F2FD;
+}
+
+
+/* --- 8. フォーム & スライダー --- */
+.slider-container {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: #F9F9F9;
+    padding: 8px;
+    border-radius: 4px;
+}
+.slider-container input[type="range"] {
+    flex: 1;
+    cursor: pointer;
+}
+.slider-value {
+    font-weight: bold;
+    color: #3B95C4;
+    width: 40px;
+    text-align: right;
+}
+.form-label {
+    display: block;
+    margin-bottom: 6px;
+    font-size: 0.95em;
+    color: #333;
+}
+
+/* --- 9. アンケート (Questionnaire) --- */
+.question-block {
+    margin-bottom: 24px;
+    padding: 24px;
+    border: 1px solid #E0E0E0;
+    border-radius: 8px;
+}
+.question-label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 16px;
+}
+.question-label-sub {
+    display: block;
+    font-size: 0.95em;
+    margin-top: 16px;
+    margin-bottom: 8px;
+    color: #555;
+}
+
+/* リッカート尺度 (7段階) */
+.likert-scale-7 {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 16px;
+}
+.likert-label-left, .likert-label-right {
+    font-size: 0.8em;
+    color: #666;
+    width: 80px;
+}
+.likert-label-right { text-align: right; }
+
+.likert-scale-7 label {
+    flex: 1;
+    text-align: center;
+    cursor: pointer;
+}
+.likert-scale-7 input[type="radio"] {
+    display: none; /* ラジオボタン本体は隠す */
+}
+.likert-scale-7 label span {
+    display: block;
+    width: 32px; height: 32px;
+    line-height: 30px;
+    margin: 0 auto;
+    border: 1px solid #CCC;
+    border-radius: 50%;
+    background: #FFF;
+    transition: all 0.2s;
+}
+.likert-scale-7 label:hover span {
+    border-color: #3B95C4;
+    background: #F0F8FF;
+}
+.likert-scale-7 input[type="radio"]:checked + span {
+    background-color: #3B95C4;
+    color: #FFF;
+    border-color: #3B95C4;
+    font-weight: bold;
+}
+
+/* --- 10. フッター --- */
+.navigation-footer {
+    padding: 20px 32px;
+    background-color: #F9F9F9;
+    border-top: 1px solid #E0E0E0;
+    display: flex;
+    justify-content: flex-end; /* 右寄せ */
+}
+.btn-primary {
+    background-color: #3B95C4;
+    border-color: #3B95C4;
+    color: #fff;
+    padding: 10px 24px;
+    font-weight: bold;
+    border-radius: 4px;
+    cursor: pointer;
+}
+.btn-primary:hover {
+    background-color: #307FAA;
+}
+.btn-primary:disabled {
+    background-color: #CCC;
+    border-color: #CCC;
+    cursor: not-allowed;
+}
+
+.experiment-footer {
+    text-align: center;
+    margin-top: 16px;
+    font-size: 0.8em;
+}

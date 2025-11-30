@@ -4,86 +4,112 @@
 
 {{ block content }}
 
-<div class="card bg-light m-3">
-    <div class="card-body">
+<div class="experiment-container">
+
+    <div class="progress-tabs">
+      <div class="tab-button active">実験の進捗</div>
+    </div>
+    <div class="progress-content">
+      <div class="progress-steps active">
+        <div class="step completed"><div class="step-number">1</div>同意取得</div>
+        <div class="step completed"><div class="step-number">2</div>投資意思決定</div>
+        <div class="step current"><div class="step-number">3</div>アンケート</div>
+        <div class="step"><div class="step-number">4</div>デブリーフィング</div>
+      </div>
+    </div>
+
+    <div class="content-area">
+        <h2 id="page-title">事後アンケート</h2>
         <p>
             実験へのご協力、ありがとうございました。<br>
             最後に、いくつかの質問にお答えください。これですべて終了となります。
         </p>
-    </div>
-</div>
 
-<hr>
-
-<div class="card mb-4">
-    <div class="card-header">
-        <b>1. 情報についての質問</b>
-    </div>
-    <div class="card-body">
-        <p>実験中、あなたはX氏に関する「ネガティブな情報（裏切り情報）」を受け取りました。</p>
-        {{ formfield 'intent_guess' }}
-    </div>
-</div>
-
-<div class="card mb-4">
-    <div class="card-header">
-        <b>2. あなたの考え方について</b>
-    </div>
-    <div class="card-body">
-        <p>以下の項目について、あなたの考えに最も近い数字（1:全くそう思わない ～ 7:非常にそう思う）を選んでください。</p>
-        
-        <table class="table table-bordered table-striped mt-3">
-            <thead>
-                <tr>
-                    <th style="width: 50%">質問項目</th>
-                    <th class="text-center">回答</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>{{ form.trust_1.label }}</td>
-                    <td class="text-center">{{ form.trust_1 }}</td>
-                </tr>
-                <tr>
-                    <td>{{ form.trust_2.label }}</td>
-                    <td class="text-center">{{ form.trust_2 }}</td>
-                </tr>
-                <tr>
-                    <td>{{ form.trust_3.label }}</td>
-                    <td class="text-center">{{ form.trust_3 }}</td>
-                </tr>
-            </tbody>
-        </table>
-        <div class="text-muted text-right mb-2">
-            <small>（1:全くそう思わない ... 7:非常にそう思う）</small>
-        </div>
-    </div>
-</div>
-
-<div class="card mb-4">
-    <div class="card-header">
-        <b>3. 基本情報</b>
-    </div>
-    <div class="card-body">
-        <div class="row">
-            <div class="col-md-6">
-                {{ formfield 'age' }}
-            </div>
-            <div class="col-md-6">
-                {{ formfield 'gender' }}
+        <div class="question-block">
+            <label class="question-label">
+                Q1. 実験中、あなたは「X氏は裏切り者だ」という情報を受け取りました。<br>
+                この情報を伝えた人物の「意図」として、あなたが最も近いと感じたものはどれですか？
+            </label>
+            <div class="question-body">
+                {# oTree標準のラジオボタンを整形して表示 #}
+                {% formfield player.intent_guess label="" %}
             </div>
         </div>
-    </div>
-</div>
 
-<div class="card mb-4">
-    <div class="card-body">
-        {{ formfield 'feedback' }}
-    </div>
-</div>
+        <div class="question-block">
+            <label class="question-label">
+                Q2. あなたご自身について、以下の項目はどの程度あてはまりますか？
+            </label>
+            <div class="question-body">
+                
+                <label class="question-label-sub">2-1. ほとんどの人は基本的に正直だと思う</label>
+                <div class="likert-scale-7">
+                    <span class="likert-label-left">全くそう思わない</span>
+                    <label><input type="radio" name="trust_1" value="1" required><span>1</span></label>
+                    <label><input type="radio" name="trust_1" value="2"><span>2</span></label>
+                    <label><input type="radio" name="trust_1" value="3"><span>3</span></label>
+                    <label><input type="radio" name="trust_1" value="4"><span>4</span></label>
+                    <label><input type="radio" name="trust_1" value="5"><span>5</span></label>
+                    <label><input type="radio" name="trust_1" value="6"><span>6</span></label>
+                    <label><input type="radio" name="trust_1" value="7"><span>7</span></label>
+                    <span class="likert-label-right">非常にそう思う</span>
+                </div>
 
-<div class="text-center mt-4">
-    {{ next_button }}
+                <label class="question-label-sub">2-2. ほとんどの人は信頼できると思う</label>
+                <div class="likert-scale-7">
+                    <span class="likert-label-left">全くそう思わない</span>
+                    <label><input type="radio" name="trust_2" value="1" required><span>1</span></label>
+                    <label><input type="radio" name="trust_2" value="2"><span>2</span></label>
+                    <label><input type="radio" name="trust_2" value="3"><span>3</span></label>
+                    <label><input type="radio" name="trust_2" value="4"><span>4</span></label>
+                    <label><input type="radio" name="trust_2" value="5"><span>5</span></label>
+                    <label><input type="radio" name="trust_2" value="6"><span>6</span></label>
+                    <label><input type="radio" name="trust_2" value="7"><span>7</span></label>
+                    <span class="likert-label-right">非常にそう思う</span>
+                </div>
+
+                <label class="question-label-sub">2-3. ほとんどの人は基本的に善良で親切だと思う</label>
+                <div class="likert-scale-7">
+                    <span class="likert-label-left">全くそう思わない</span>
+                    <label><input type="radio" name="trust_3" value="1" required><span>1</span></label>
+                    <label><input type="radio" name="trust_3" value="2"><span>2</span></label>
+                    <label><input type="radio" name="trust_3" value="3"><span>3</span></label>
+                    <label><input type="radio" name="trust_3" value="4"><span>4</span></label>
+                    <label><input type="radio" name="trust_3" value="5"><span>5</span></label>
+                    <label><input type="radio" name="trust_3" value="6"><span>6</span></label>
+                    <label><input type="radio" name="trust_3" value="7"><span>7</span></label>
+                    <span class="likert-label-right">非常にそう思う</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="question-block">
+            <label class="question-label">Q3. あなたの基本情報を教えてください。</label>
+            <div class="question-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        {% formfield player.age %}
+                    </div>
+                    <div class="col-md-6">
+                        {% formfield player.gender %}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="question-block">
+            <label class="question-label">Q4. その他、気になったことや感想があればご自由にお書きください（任意）</label>
+            <div class="question-body">
+                {% formfield player.feedback label="" %}
+            </div>
+        </div>
+
+    </div>
+
+    <div class="navigation-footer">
+        <button class="btn btn-primary">回答を送信して次へ</button>
+    </div>
+
 </div>
 
 {{ endblock }}

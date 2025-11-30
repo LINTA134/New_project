@@ -2,34 +2,47 @@ from otree.api import Page
 from .models import C
 
 class Introduction(Page):
-    pass
+    def is_displayed(self):
+        return self.round_number == 1
 
 class GossipStimuli(Page):
     form_model = 'player'
-    # 投資額を入力させる
-    form_fields = ['invest_A', 'invest_B', 'invest_C', 'invest_X']
+    form_fields = [
+        'invest_A_limit', 'invest_A_amount',
+        'invest_B_limit', 'invest_B_amount',
+        'invest_C_limit', 'invest_C_amount',
+        'invest_X_limit', 'invest_X_amount'
+    ]
 
-    def vars_for_template(self):
-        # テンプレート側で「誰が発信者か」を表示し分けるための変数を渡す
-        return {
-            'sender_is_cooperative': self.player.treatment == 'cooperative_sender'
-        }
-
-class Ranking(Page):
-    form_model = 'player'
-    form_fields = ['rank_A', 'rank_B', 'rank_C', 'rank_X']
-
-    # 追加：テンプレートで条件分岐をするための変数を渡す
     def vars_for_template(self):
         return {
             'sender_is_cooperative': self.player.treatment == 'cooperative_sender'
         }
 
     def error_message(self, values):
-        # 入力チェック：1位〜4位が重複していないか確認
-        ranks = [values['rank_A'], values['rank_B'], values['rank_C'], values['rank_X']]
-        if sorted(ranks) != [1, 2, 3, 4]:
-            return '順位は1位から4位まで、重複なく入力してください。'
+        # 1. 予算枠の重複チェック
+        limits = [
+            values['invest_A_limit'],
+            values['invest_B_limit'],
+            values['invest_C_limit'],
+            values['invest_X_limit']
+        ]
+        if len(set(limits)) != 4:
+            return "4つの予算枠（4000万、3000万、2000万、1000万）を、重複しないように4人の起業家に割り当ててください。"
+
+        # 2. 投資額が枠を超えていないかチェック
+        errors = []
+        if values['invest_A_amount'] > values['invest_A_limit']:
+            errors.append(f"起業家Aへの投資額が上限（{values['invest_A_limit']}万円）を超えています。")
+        if values['invest_B_amount'] > values['invest_B_limit']:
+            errors.append(f"起業家Bへの投資額が上限（{values['invest_B_limit']}万円）を超えています。")
+        if values['invest_C_amount'] > values['invest_C_limit']:
+            errors.append(f"起業家Cへの投資額が上限（{values['invest_C_limit']}万円）を超えています。")
+        if values['invest_X_amount'] > values['invest_X_limit']:
+            errors.append(f"起業家Xへの投資額が上限（{values['invest_X_limit']}万円）を超えています。")
+        
+        if errors:
+            return errors
 
 class Questionnaire(Page):
     form_model = 'player'
@@ -43,14 +56,9 @@ class Debrief(Page):
     form_model = 'player'
     form_fields = ['data_usage_consent']
 
-    def error_message(self, values):
-        if not values['data_usage_consent']:
-            return '実験データを送信するには、同意ボックスにチェックを入れる必要があります。もし同意されない場合は、ブラウザを閉じて終了してください。'
-
 page_sequence = [
     Introduction,
     GossipStimuli,
-    Ranking,
     Questionnaire,
     Debrief
-    ]
+]

@@ -1,0 +1,80 @@
+{{ block title }}
+    起業家への投資審査
+{{ endblock }}
+
+{{ block content }}
+
+<div class="card bg-light m-3">
+    <div class="card-body">
+        <h4>あなたの役割</h4>
+        <p>
+            あなたは投資ファンドの責任者です。以下の4名の起業家から出資の依頼が来ています。<br>
+            それぞれの資料を読み、個別に<b>出資承認額（0 ～ 1,000万円）</b>を決定してください。
+        </p>
+    </div>
+</div>
+
+<hr>
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header bg-success text-white">起業家A（実績あり）</div>
+            <div class="card-body">
+                <p><b>過去の実績：</b> 利益の<b>約50%</b>を投資家に還元。<br>非常に誠実なパートナーとして知られる。</p>
+                {{ formfield 'invest_A' }}
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header bg-danger text-white">起業家B（実績あり）</div>
+            <div class="card-body">
+                <p><b>過去の実績：</b> 利益の<b>約10%</b>しか還元せず。<br>利己的なパートナーとして知られる。</p>
+                {{ formfield 'invest_B' }}
+            </div>
+        </div>
+    </div>
+</div>
+
+<br>
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header bg-secondary text-white">起業家C（新人）</div>
+            <div class="card-body">
+                <p><b>過去の実績：</b> データなし（新規参入）。<br>どのような人物かは不明。</p>
+                {{ formfield 'invest_C' }}
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-6">
+        <div class="card border-warning">
+            <div class="card-header bg-warning text-dark">起業家X（噂あり）</div>
+            <div class="card-body">
+                <p><b>過去の実績：</b> データなし。</p>
+                
+                <div class="alert alert-info">
+                    <strong>【内部情報】</strong><br>
+                    
+                    {{ if sender_is_cooperative }}
+                        あの誠実な評判を持つ<b>起業家A氏</b>から、以下の情報が寄せられています。<br>
+                        <i>「ここだけの話、X氏は以前、共同出資者を裏切ったことがある。信用しない方がいい」</i>
+                    {{ else }}
+                        あの利己的な評判を持つ<b>起業家B氏</b>から、以下の情報が寄せられています。<br>
+                        <i>「ここだけの話、X氏は以前、共同出資者を裏切ったことがある。信用しない方がいい」</i>
+                    {{ endif }}
+                </div>
+
+                {{ formfield 'invest_X' }}
+            </div>
+        </div>
+    </div>
+</div>
+
+<br>
+{{ next_button }}
+
+{{ endblock }}

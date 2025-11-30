@@ -1,0 +1,102 @@
+{% extends "global/Page.html" %}
+{{ block title }}
+    起業家プロフィール確認
+{{ endblock }}
+
+{{ block content }}
+  {# SVGアイコン定義は共通テンプレートで読み込まれていますが、念のため再定義 #}
+  <svg class="icon-svg" style="display:none;">
+    <symbol id="icon-person" viewBox="0 0 24 24">
+      <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+    </symbol>
+  </svg>
+  
+  <div class="experiment-container">
+
+    <div class="progress-tabs">
+      <div class="tab-button active">実験の進捗</div>
+    </div>
+    <div class="progress-content">
+      <div class="progress-steps active">
+        <div class="step completed"><div class="step-number">1</div>同意取得</div>
+        <div class="step current"><div class="step-number">2</div>プロフィール確認</div>
+        <div class="step"><div class="step-number">3</div>投資意思決定</div>
+        <div class="step"><div class="step-number">4</div>アンケート</div>
+        <div class="step"><div class="step-number">5</div>デブリーフィング</div>
+      </div>
+    </div>
+
+    <div class="content-area">
+      <h2 id="page-title">起業家プロフィールと情報確認</h2>
+
+      <div class="rule-box">
+          <h4>あなたの役割と投資のルール</h4>
+          <p>
+              あなたは投資ファンドの責任者です。4名の起業家に対し、以下の<b>4つの予算枠（上限額）</b>を1つずつ割り当て、その枠の範囲内で実際にいくら投資するかを決定します。
+          </p>
+          <div class="text-center mb-3">
+              <span class="badge badge-limit limit-4000">4,000万円 枠</span>
+              <span class="badge badge-limit limit-3000">3,000万円 枠</span>
+              <span class="badge badge-limit limit-2000">2,000万円 枠</span>
+              <span class="badge badge-limit limit-1000">1,000万円 枠</span>
+          </div>
+      </div>
+
+      <h3>個別の起業家情報</h3>
+
+      {# 評判情報のサマリーをここに配置 #}
+      <div class="reputation-summary-container">
+          <div class="profile-card">
+              <div class="icon icon-a"><svg><use xlink:href="#icon-person"></use></svg></div>
+              <span class="name">起業家レッド</span>
+              <span class="reputation-text reputation-cooperative">過去の実績：投資額の約250%回収<br>（非常に優秀）</span>
+          </div>
+          <div class="profile-card">
+              <div class="icon icon-b"><svg><use xlink:href="#icon-person"></use></svg></div>
+              <span class="name">起業家シアン</span>
+              <span class="reputation-text reputation-selfish">過去の実績：投資額の約80%回収<br>（利己的）</span>
+          </div>
+          <div class="profile-card">
+              <div class="icon icon-c"><svg><use xlink:href="#icon-person"></use></svg></div>
+              <span class="name">起業家グリーン</span>
+              <span class="reputation-text reputation-unknown">過去の実績：データなし<br>（新規参入）</span>
+          </div>
+          <div class="profile-card">
+              <div class="icon icon-x"><svg><use xlink:href="#icon-person"></use></svg></div>
+              <span class="name">起業家オレンジ</span>
+              <span class="reputation-text reputation-gossip">過去の実績：データなし<br>（噂あり）</span>
+          </div>
+      </div>
+      
+      <h3>内部情報（ゴシップ）</h3>
+
+      {# ゴシップ表示を吹き出しデザインで強調 #}
+      <div class="gossip-illustrator" style="justify-content: center; margin: 32px 0;">
+          <div class="profile-card">
+              <div class="icon {{ if sender_is_cooperative }}icon-a{{ else }}icon-b{{ endif }}"><svg><use xlink:href="#icon-person"></use></svg></div>
+          </div>
+          <div class="speech-bubble">
+              <strong>【重要情報】</strong><br>
+              {{ if sender_is_cooperative }}
+                  あの誠実な評判を持つ<b>起業家レッド</b>から、以下の情報が寄せられています。<br>
+                  <i>「ここだけの話、オレンジさんは以前、。信用しない方がいい」</i>
+              {{ else }}
+                  あの利己的な評判を持つ<b>起業家シアン</b>から、以下の情報が寄せられています。<br>
+                  <i>「ここだけの話、オレンジさんは以前、共同出資者を裏切ったことがある。信用しない方がいい」</i>
+              {{ endif }}
+          </div>
+      </div>
+
+      <p style="text-align: center; margin-top: 32px;">
+          起業家に関する情報は以上です。次のページで、<b>予算枠の割り当てと実際の投資額</b>を決定してください。
+      </p>
+
+    </div>
+    
+    <div class="navigation-footer">
+      {{ next_button }}
+    </div>
+
+  </div>
+
+{{ endblock }}

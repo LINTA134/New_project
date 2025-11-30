@@ -1,10 +1,10 @@
+{% extends "global/Page.html" %}
 {{ block title }}
-    起業家への投資審査
+    投資意思決定
 {{ endblock }}
 
 {{ block content }}
 
-  {# SVGアイコン定義（デザイン引き継ぎのため、ここで再定義します） #}
   <svg class="icon-svg" style="display:none;">
     <symbol id="icon-person" viewBox="0 0 24 24">
       <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
@@ -12,69 +12,88 @@
   </svg>
   
   <div class="experiment-container">
+    
+    <div class="progress-tabs">
+      <div class="tab-button active">実験の進捗</div>
+    </div>
+    <div class="progress-content">
+      <div class="progress-steps active">
+        <div class="step completed"><div class="step-number">1</div>同意取得</div>
+        <div class="step completed"><div class="step-number">2</div>プロフィール確認</div>
+        <div class="step current"><div class="step-number">3</div>投資意思決定</div>
+        <div class="step"><div class="step-number">4</div>アンケート</div>
+        <div class="step"><div class="step-number">5</div>デブリーフィング</div>
+      </div>
+    </div>
+
     <div class="content-area">
 
-      <h2>起業家への投資審査</h2>
+      <h2 id="page-title">投資意思決定</h2>
 
-      <div class="rule-box">
-          <h4>あなたの役割：投資枠の配分と投資実行</h4>
-          <p>
-              あなたは投資ファンドの責任者です。以下の4名の起業家に対し、以下の<b>4つの予算枠（上限額）</b>を1つずつ割り当ててください。
-          </p>
-          <div class="text-center mb-3">
-              <span class="badge badge-limit limit-4000">4,000万円 枠</span>
-              <span class="badge badge-limit limit-3000">3,000万円 枠</span>
-              <span class="badge badge-limit limit-2000">2,000万円 枠</span>
-              <span class="badge badge-limit limit-1000">1,000万円 枠</span>
-          </div>
-          <p>
-              <b>【手順】</b><br>
-              1. 各起業家にどの予算枠を与えるか決めてください（重複不可）。<br>
-              2. その枠の範囲内で、<b>実際にいくら投資するか</b>（0 ～ 枠の上限額）を決めて入力してください。<br>
-              <small class="text-muted">例：起業家Aに「4,000万円枠」を与え、実際には「2,000万円」だけ投資する、など。</small>
-          </p>
-      </div>
+      <p class="mb-4">
+          以下の情報に基づき、4名の起業家に対し、<b>4つの予算枠の割り当て</b>と、<b>実際の投資実行額</b>を決定してください。
+      </p>
 
-      {# 評判情報のサマリーをここに配置（デザイン継承） #}
-      <div class="reputation-summary-container">
-          <div class="profile-card">
-              <div class="icon icon-a"><svg><use xlink:href="#icon-person"></use></svg></div>
-              <span class="name">起業家A</span>
-              <span class="reputation-text reputation-cooperative">協力的（50%還元）</span>
+      <div class="rule-box" style="background-color: #fff; border: 1px solid #ccc;">
+          <h4>参考情報（プロフィールとゴシップ）</h4>
+          
+          {# 1. プロフィール一覧 #}
+          <div class="reputation-summary-container" style="margin-bottom: 16px;">
+              <div class="profile-card">
+                  <div class="icon icon-a"><svg><use xlink:href="#icon-person"></use></svg></div>
+                  <span class="name">起業家レッド</span>
+                  <span class="reputation-text reputation-cooperative">過去の実績：投資額の約250%還元</span>
+              </div>
+              <div class="profile-card">
+                  <div class="icon icon-b"><svg><use xlink:href="#icon-person"></use></svg></div>
+                  <span class="name">起業家シアン</span>
+                  <span class="reputation-text reputation-selfish">利己的（10%還元）</span>
+              </div>
+              <div class="profile-card">
+                  <div class="icon icon-c"><svg><use xlink:href="#icon-person"></use></svg></div>
+                  <span class="name">起業家グリーン</span>
+                  <span class="reputation-text reputation-unknown">新人（情報なし）</span>
+              </div>
+              <div class="profile-card">
+                  <div class="icon icon-x"><svg><use xlink:href="#icon-person"></use></svg></div>
+                  <span class="name">起業家オレンジ</span>
+                  <span class="reputation-text reputation-gossip">噂あり</span>
+              </div>
           </div>
-          <div class="profile-card">
-              <div class="icon icon-b"><svg><use xlink:href="#icon-person"></use></svg></div>
-              <span class="name">起業家B</span>
-              <span class="reputation-text reputation-selfish">利己的（10%還元）</span>
-          </div>
-          <div class="profile-card">
-              <div class="icon icon-c"><svg><use xlink:href="#icon-person"></use></svg></div>
-              <span class="name">起業家C</span>
-              <span class="reputation-text reputation-unknown">新人（情報なし）</span>
-          </div>
-          <div class="profile-card">
-              <div class="icon icon-x"><svg><use xlink:href="#icon-person"></use></svg></div>
-              <span class="name">起業家X</span>
-              <span class="reputation-text reputation-gossip">噂あり（情報なし）</span>
+
+          {# 2. ゴシップ #}
+          <div class="gossip-illustrator" style="margin-bottom: 0;">
+              <div class="profile-card">
+                  <div class="icon {{ if sender_is_cooperative }}icon-a{{ else }}icon-b{{ endif }}"><svg><use xlink:href="#icon-person"></use></svg></div>
+                  <span class="name" style="font-size: 0.8em;">
+                      {{ if sender_is_cooperative }}起業家レッド{{ else }}起業家シアン{{ endif }}
+                  </span>
+              </div>
+              <div class="speech-bubble">
+                  <strong>【重要情報】</strong><br>
+                  {{ if sender_is_cooperative }}
+                      <i>「ここだけの話、オレンジ氏は以前、共同出資者を裏切ったことがある。信用しない方がいい」</i>
+                  {{ else }}
+                      <i>「ここだけの話、オレンジ氏は以前、共同出資者を裏切ったことがある。信用しない方がいい」</i>
+                  {{ endif }}
+              </div>
           </div>
       </div>
-      
+      <hr style="margin: 32px 0;">
+
       <div class="row">
           
-          {# 起業家A #}
+          {# 起業家レッド #}
           <div class="col-md-6 mb-4">
               <div class="investment-card card-cooperative">
                   <div class="card-header"><div class="icon icon-a"><svg><use xlink:href="#icon-person"></svg></div> 起業家A</div>
                   <div class="card-body">
-                      <p class="mb-2">非常に誠実なパートナーとして知られる。</p>
-
                       <label class="form-label"><b>① 予算枠の割り当て:</b></label>
                       {% formfield player.invest_A_limit label="" %}
                       
-                      <label class="form-label mt-3"><b>② 実際の投資額 (0〜4,000万円):</b></label>
+                      <label class="form-label mt-3"><b>② 実際の投資額 :</b></label>
                       <div class="slider-container">
                           <span>0</span>
-                          {# input type="range" は oTreeによって自動生成されます #}
                           {{ form.invest_A_amount }}
                           <span class="slider-value">0</span> 万円
                       </div>
@@ -82,17 +101,15 @@
               </div>
           </div>
           
-          {# 起業家B #}
+          {# 起業家シアン #}
           <div class="col-md-6 mb-4">
               <div class="investment-card card-selfish">
                   <div class="card-header"><div class="icon icon-b"><svg><use xlink:href="#icon-person"></svg></div> 起業家B</div>
                   <div class="card-body">
-                      <p class="mb-2">利己的なパートナーとして知られる。</p>
-
                       <label class="form-label"><b>① 予算枠の割り当て:</b></label>
                       {% formfield player.invest_B_limit label="" %}
                       
-                      <label class="form-label mt-3"><b>② 実際の投資額 (0〜4,000万円):</b></label>
+                      <label class="form-label mt-3"><b>② 実際の投資額 :</b></label>
                       <div class="slider-container">
                           <span>0</span>
                           {{ form.invest_B_amount }}
@@ -102,17 +119,15 @@
               </div>
           </div>
 
-          {# 起業家C #}
+          {# 起業家グリーン #}
           <div class="col-md-6 mb-4">
               <div class="investment-card card-neutral">
                   <div class="card-header"><div class="icon icon-c"><svg><use xlink:href="#icon-person"></svg></div> 起業家C</div>
                   <div class="card-body">
-                      <p class="mb-2">過去の実績：データなし（新規参入）。</p>
-
                       <label class="form-label"><b>① 予算枠の割り当て:</b></label>
                       {% formfield player.invest_C_limit label="" %}
                       
-                      <label class="form-label mt-3"><b>② 実際の投資額 (0〜4,000万円):</b></label>
+                      <label class="form-label mt-3"><b>② 実際の投資額 :</b></label>
                       <div class="slider-container">
                           <span>0</span>
                           {{ form.invest_C_amount }}
@@ -122,33 +137,15 @@
               </div>
           </div>
           
-          {# 起業家X (ゴシップ対象) #}
+          {# 起業家オレンジ #}
           <div class="col-md-6 mb-4">
               <div class="investment-card card-gossip">
-                  <div class="card-header"><div class="icon icon-x"><svg><use xlink:href="#icon-person"></svg></div> 起業家X（噂あり）</div>
+                  <div class="card-header"><div class="icon icon-x"><svg><use xlink:href="#icon-person"></svg></div> 起業家X</div>
                   <div class="card-body">
-                      <p class="mb-2">過去の実績：データなし。</p>
-                      
-                      {# ゴシップ表示を吹き出しデザインに置き換え #}
-                      <div class="gossip-illustrator">
-                          <div class="profile-card">
-                              <div class="icon {{ if sender_is_cooperative }}icon-a{{ else }}icon-b{{ endif }}"><svg><use xlink:href="#icon-person"></svg></div>
-                          </div>
-                          <div class="speech-bubble">
-                              {{ if sender_is_cooperative }}
-                                  あの誠実な評判を持つ<b>起業家A氏</b>から、以下の情報が寄せられています。<br>
-                                  <i>「ここだけの話、X氏は以前、共同出資者を裏切ったことがある。信用しない方がいい」</i>
-                              {{ else }}
-                                  あの利己的な評判を持つ<b>起業家B氏</b>から、以下の情報が寄せられています。<br>
-                                  <i>「ここだけの話、X氏は以前、共同出資者を裏切ったことがある。信用しない方がいい」</i>
-                              {{ endif }}
-                          </div>
-                      </div>
-
-                      <label class="form-label mt-3"><b>① 予算枠の割り当て:</b></label>
+                      <label class="form-label"><b>① 予算枠の割り当て:</b></label>
                       {% formfield player.invest_X_limit label="" %}
                       
-                      <label class="form-label mt-3"><b>② 実際の投資額 (0〜4,000万円):</b></label>
+                      <label class="form-label mt-3"><b>② 実際の投資額 :</b></label>
                       <div class="slider-container">
                           <span>0</span>
                           {{ form.invest_X_amount }}

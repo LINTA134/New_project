@@ -1,0 +1,89 @@
+{{ block title }}
+    事後アンケート
+{{ endblock }}
+
+{{ block content }}
+
+<div class="card bg-light m-3">
+    <div class="card-body">
+        <p>
+            実験へのご協力、ありがとうございました。<br>
+            最後に、いくつかの質問にお答えください。これですべて終了となります。
+        </p>
+    </div>
+</div>
+
+<hr>
+
+<div class="card mb-4">
+    <div class="card-header">
+        <b>1. 情報についての質問</b>
+    </div>
+    <div class="card-body">
+        <p>実験中、あなたはX氏に関する「ネガティブな情報（裏切り情報）」を受け取りました。</p>
+        {{ formfield 'intent_guess' }}
+    </div>
+</div>
+
+<div class="card mb-4">
+    <div class="card-header">
+        <b>2. あなたの考え方について</b>
+    </div>
+    <div class="card-body">
+        <p>以下の項目について、あなたの考えに最も近い数字（1:全くそう思わない ～ 7:非常にそう思う）を選んでください。</p>
+        
+        <table class="table table-bordered table-striped mt-3">
+            <thead>
+                <tr>
+                    <th style="width: 50%">質問項目</th>
+                    <th class="text-center">回答</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{{ form.trust_1.label }}</td>
+                    <td class="text-center">{{ form.trust_1 }}</td>
+                </tr>
+                <tr>
+                    <td>{{ form.trust_2.label }}</td>
+                    <td class="text-center">{{ form.trust_2 }}</td>
+                </tr>
+                <tr>
+                    <td>{{ form.trust_3.label }}</td>
+                    <td class="text-center">{{ form.trust_3 }}</td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="text-muted text-right mb-2">
+            <small>（1:全くそう思わない ... 7:非常にそう思う）</small>
+        </div>
+    </div>
+</div>
+
+<div class="card mb-4">
+    <div class="card-header">
+        <b>3. 基本情報</b>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-6">
+                {{ formfield 'age' }}
+            </div>
+            <div class="col-md-6">
+                {{ formfield 'gender' }}
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="card mb-4">
+    <div class="card-body">
+        {{ formfield 'feedback' }}
+    </div>
+</div>
+
+<div class="text-center mt-4">
+    {{ next_button }}
+</div>
+
+{{ endblock }}

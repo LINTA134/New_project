@@ -1,5 +1,5 @@
 from otree.api import Page
-from .models import Constants
+from .models import C
 
 class Introduction(Page):
     pass
@@ -19,6 +19,12 @@ class Ranking(Page):
     form_model = 'player'
     form_fields = ['rank_A', 'rank_B', 'rank_C', 'rank_X']
 
+    # 追加：テンプレートで条件分岐をするための変数を渡す
+    def vars_for_template(self):
+        return {
+            'sender_is_cooperative': self.player.treatment == 'cooperative_sender'
+        }
+
     def error_message(self, values):
         # 入力チェック：1位〜4位が重複していないか確認
         ranks = [values['rank_A'], values['rank_B'], values['rank_C'], values['rank_X']]
@@ -27,15 +33,24 @@ class Ranking(Page):
 
 class Questionnaire(Page):
     form_model = 'player'
-    form_fields = ['intent_guess']
+    form_fields = [
+        'intent_guess',
+        'trust_1', 'trust_2', 'trust_3',
+        'age', 'gender', 'feedback'
+    ]
 
 class Debrief(Page):
-    pass
+    form_model = 'player'
+    form_fields = ['data_usage_consent']
+
+    def error_message(self, values):
+        if not values['data_usage_consent']:
+            return '実験データを送信するには、同意ボックスにチェックを入れる必要があります。もし同意されない場合は、ブラウザを閉じて終了してください。'
 
 page_sequence = [
-    #Introduction,
+    Introduction,
     GossipStimuli,
-    #Ranking,
-    #Questionnaire,
-    #Debrief
+    Ranking,
+    Questionnaire,
+    Debrief
     ]

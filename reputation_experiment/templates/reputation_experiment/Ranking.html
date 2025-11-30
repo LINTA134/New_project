@@ -1,0 +1,99 @@
+{{ block title }}
+    優先パートナーの選定
+{{ endblock }}
+
+{{ block content }}
+
+<div class="card bg-light m-3">
+    <div class="card-body">
+        <h4>ステップ2：優先順位の決定</h4>
+        <p>
+            投資額の決定、ありがとうございます。<br>
+            最後に、もし資金が不足した場合に備えて、<b>「誰への投資を優先的に実行するか」</b>のリストを作成してください。
+        </p>
+        <p>
+            以下の4名を、あなたが<b>最も信頼してパートナーにしたい順に「1位」から「4位」まで</b>順位付けしてください。<br>
+            <small class="text-danger">※同じ順位（例：1位が二人）は使用できません。</small>
+        </p>
+    </div>
+</div>
+
+<hr>
+
+<div class="row">
+    <div class="col-md-6 mb-3">
+        <div class="card h-100">
+            <div class="card-header bg-success text-white">
+                起業家A <small>（実績：利益の50%を還元）</small>
+            </div>
+            <div class="card-body">
+                <p>非常に誠実な実績を持つ人物。</p>
+                <div class="form-group">
+                    <label>優先順位 (1位～4位):</label>
+                    {{ formfield 'rank_A' label="" }}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6 mb-3">
+        <div class="card h-100">
+            <div class="card-header bg-danger text-white">
+                起業家B <small>（実績：利益の10%のみ還元）</small>
+            </div>
+            <div class="card-body">
+                <p>利己的な実績を持つ人物。</p>
+                <div class="form-group">
+                    <label>優先順位 (1位～4位):</label>
+                    {{ formfield 'rank_B' label="" }}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6 mb-3">
+        <div class="card h-100">
+            <div class="card-header bg-secondary text-white">
+                起業家C <small>（実績データなし）</small>
+            </div>
+            <div class="card-body">
+                <p>新規参入のため情報は不明。</p>
+                <div class="form-group">
+                    <label>優先順位 (1位～4位):</label>
+                    {{ formfield 'rank_C' label="" }}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6 mb-3">
+        <div class="card h-100 border-warning">
+            <div class="card-header bg-warning text-dark">
+                起業家X <small>（噂あり）</small>
+            </div>
+            <div class="card-body">
+                <div class="alert alert-sm alert-info py-1">
+                    <small>
+                        <strong>情報源:</strong>
+                        {{ if sender_is_cooperative }}
+                            誠実なA氏「Xは裏切り者だ」
+                        {{ else }}
+                            利己的なB氏「Xは裏切り者だ」
+                        {{ endif }}
+                    </small>
+                </div>
+                <div class="form-group">
+                    <label>優先順位 (1位～4位):</label>
+                    {{ formfield 'rank_X' label="" }}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<br>
+<div class="text-center">
+    {{ next_button }}
+</div>
+
+{{ endblock }}

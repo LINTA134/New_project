@@ -1,0 +1,180 @@
+{{ block title }}
+    実験参加にあたっての同意説明
+{{ endblock }}
+
+{{ block styles }}
+    <style>
+        /* コンテンツエリアの見出し装飾 */
+        .content-area h4 {
+            font-size: 1.1em;
+            color: #000000;
+            margin-top: 24px;
+            margin-bottom: 8px;
+            border-left: 4px solid #3B95C4;
+            padding-left: 8px;
+        }
+
+        /* 箇条書きのスタイル調整 */
+        .content-area ul, .content-area ol {
+            margin-top: 8px;
+            margin-bottom: 16px;
+            padding-left: 24px;
+        }
+        .content-area li {
+            margin-bottom: 4px;
+        }
+
+        /* フッターのレイアウト調整 */
+        .navigation-footer {
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: flex-start;
+        }
+        .navigation-footer p.consent-prompt {
+            font-size: 0.9em;
+            color: #454545;
+            margin: 0 0 16px 0;
+        }
+        .navigation-footer .nav-bottom-row {
+            display: flex;
+            width: 100%;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* 同意チェックボックスエリア */
+        .consent-check-area {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .consent-check-area label {
+            font-weight: bold;
+            font-size: 1em;
+            color: #454545;
+            cursor: pointer;
+        }
+        .consent-check-area input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+            accent-color: #3B95C4;
+        }
+
+        /* oTree標準のボタンスタイルを上書き・調整 */
+        .btn-primary:disabled {
+            background-color: #A0A0A0;
+            border-color: #A0A0A0;
+            cursor: not-allowed;
+            opacity: 0.7;
+        }
+    </style>
+{{ endblock }}
+
+{{ block content }}
+
+<svg class="icon-svg">
+    <symbol id="icon-person" viewBox="0 0 24 24">
+        <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+    </symbol>
+</svg>
+
+<div class="experiment-container">
+    
+    <div class="content-area">
+        <h2 id="page-title">実験参加にあたっての同意説明</h2>
+        <p>
+            本日は、社会学部４回生岩村麟太郎の卒業研究「協力に関する実験」にご参加いただき、誠にありがとうございます。<br>
+            この実験に参加いただくにあたり、以下の内容をよくお読みいただき、研究の目的や内容をご理解の上で、参加にご同意いただけるかをご判断ください。
+        </p>
+
+        <h4 id="purpose">1. 研究の目的</h4>
+        <p> 
+            この研究は、以下のような協力の意思決定のプロセスを理解することを目的としています。
+        </p>
+        <ol>
+            <li>どのように他者と協力するのか</li>
+            <li>人々が他者に関する情報を基に、どのように協力する相手を選ぶのか</li>
+        </ol>
+
+        <h4 id="content">2. 実験の内容</h4>
+        <p> 
+            この実験では、あなたには以下のタスクを行ってもらいます。
+        </p>
+        <ul>
+            <li>複数の起業家候補に対する投資額の決定</li>
+            <li>協力のパートナーとして誰を優先するかの順位付け</li>
+        </ul>
+
+        <h4 id="reward">3. 実験の時間と報酬</h4>
+        <ul> 
+            <li>想定所要時間: 約 10 分</li>
+            <li><strong>基本報酬: 300 円</strong></li>
+            <li>成功報酬: 実験内の意思決定の結果に応じて、<strong>0〜200 円程度の追加報酬</strong> が支払われる可能性があります。</li>
+        </ul>
+
+        <h4 id="confidentiality">4. 機密保持</h4>
+        <p>
+            あなたの回答データはすべて匿名で処理され、個人が特定できる形で公開されることはありません。<br>
+            データは厳重に管理され、本研究の目的（卒業研究および学会発表・論文投稿）にのみ使用されます。
+        </p>
+
+        <h4 id="rights">5. 参加の任意性・中断・データ使用の拒否について</h4>
+        <p> 
+            あなたの実験への参加は任意です。いつでも自由に実験への参加を中断することができます。<br>
+            途中で中断した場合、またはデータ使用を拒否した場合でも、不利益を被ることは一切ありません。
+        </p>
+        <p> 
+            実験の性質上、この実験には、事実とは異なる説明が含まれている可能性があります。<br>
+            実験の最後には、実験の真の目的や、欺瞞が含まれていたかどうかをすべてご説明します。<br>
+            あなたは、その説明をすべて聞いた後で、<strong>ご自身のデータをこの研究に使用することを拒否する権利</strong>が保証されています。
+        </p>
+    </div>
+    
+    <div class="navigation-footer">
+        <p class="consent-prompt"> 
+            上記のすべての内容を読み、実験の目的や内容、あなたの権利について理解した上で、実験に参加することに同意します。
+        </p>
+        <div class="nav-bottom-row">
+            <div class="consent-check-area">
+                <input type="checkbox" id="consent-check" name="consent_agreed">
+                <label for="consent-check">同意します</label>
+            </div>
+            
+            <button class="btn btn-primary" id="next-button" disabled>
+                次へ
+            </button>
+        </div>
+    </div>
+
+</div>
+
+<div class="experiment-footer">
+    <a id="quit-link" style="color: #757575; text-decoration: underline; cursor: pointer;">実験への参加を中断する</a>
+</div>
+
+{{ endblock }}
+
+{{ block scripts }}
+    <script>
+        // 同意チェックボックスによる「次へ」ボタンの有効化/無効化制御
+        document.addEventListener("DOMContentLoaded", function() {
+            const consentCheck = document.getElementById('consent-check');
+            const nextButton = document.getElementById('next-button');
+
+            if (consentCheck && nextButton) {
+                consentCheck.addEventListener('change', function() {
+                    nextButton.disabled = !this.checked;
+                });
+            }
+
+            // 中断リンクのクリックイベント（必要に応じてアラートなどを出す）
+            const quitLink = document.getElementById('quit-link');
+            if (quitLink) {
+                quitLink.addEventListener('click', function() {
+                    alert('画面を閉じて実験を終了してください。');
+                });
+            }
+        });
+    </script>
+{{ endblock }}

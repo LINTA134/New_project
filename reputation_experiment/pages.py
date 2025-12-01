@@ -17,10 +17,14 @@ class ProfileReview(Page):
 class GossipStimuli(Page):
     form_model = 'player'
     form_fields = [
-        'invest_A_limit', 'invest_A_amount',
-        'invest_B_limit', 'invest_B_amount',
-        'invest_C_limit', 'invest_C_amount',
-        'invest_X_limit', 'invest_X_amount'
+        'invest_A_limit',
+        'invest_B_limit',
+        'invest_C_limit',
+        'invest_X_limit',
+        #'invest_A_amount',
+        #'invest_B_amount',
+        #'invest_C_amount',
+        #'invest_X_amount'
     ]
     
     def vars_for_template(self):
@@ -38,7 +42,7 @@ class GossipStimuli(Page):
         ]
         if len(set(limits)) != 4:
             return "4つの予算枠（4000万、3000万、500万、100万）を、重複しないように4人の起業家に割り当ててください。"
-
+        """
         errors = []
         if values['invest_A_amount'] > values['invest_A_limit']:
             errors.append(f"起業家Aへの投資額が上限（{values['invest_A_limit']}万円）を超えています。")
@@ -51,9 +55,15 @@ class GossipStimuli(Page):
         
         if errors:
             return errors
+        """    
 
 class Questionnaire(Page):
     form_model = 'player'
+    
+    def vars_for_template(self):
+        return {
+            'sender_is_cooperative': self.player.treatment == 'cooperative_sender'
+        }
     # 1ページ目はゴシップと意図の評価のみ
     form_fields = [
         'gossip_is_true', 'orange_is_risky', 'orange_is_unethical',

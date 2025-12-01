@@ -35,7 +35,7 @@
       </p>
 
       <div class="rule-box" style="background-color: #fff; border: 1px solid #ccc;">
-          <h4>参考情報（プロフィールとゴシップ）</h4>
+          <h4>参考情報のまとめ</h4>
           
           {# 1. プロフィール一覧 (S/D評価に更新) #}
           <div class="reputation-summary-container" style="margin-bottom: 16px;">
@@ -88,15 +88,8 @@
               <div class="investment-card card-cooperative">
                   <div class="card-header"><div class="icon icon-a"><svg><use xlink:href="#icon-person"></svg></div> 起業家レッド</div>
                   <div class="card-body">
-                      <label class="form-label"><b>① 予算枠の割り当て:</b></label>
+                      <label class="form-label"><b>予算枠の割り当て:</b></label>
                       {% formfield player.invest_A_limit label="" %}
-                      
-                      <label class="form-label mt-3"><b>② 実際の投資額 :</b></label>
-                      <div class="slider-container">
-                          <span>0</span>
-                          {{ form.invest_A_amount }}
-                          <span class="slider-value">0</span> 万円
-                      </div>
                   </div>
               </div>
           </div>
@@ -106,15 +99,8 @@
               <div class="investment-card card-selfish">
                   <div class="card-header"><div class="icon icon-b"><svg><use xlink:href="#icon-person"></svg></div> 起業家シアン</div>
                   <div class="card-body">
-                      <label class="form-label"><b>① 予算枠の割り当て:</b></label>
+                      <label class="form-label"><b>予算枠の割り当て:</b></label>
                       {% formfield player.invest_B_limit label="" %}
-                      
-                      <label class="form-label mt-3"><b>② 実際の投資額 :</b></label>
-                      <div class="slider-container">
-                          <span>0</span>
-                          {{ form.invest_B_amount }}
-                          <span class="slider-value">0</span> 万円
-                      </div>
                   </div>
               </div>
           </div>
@@ -124,15 +110,8 @@
               <div class="investment-card card-neutral">
                   <div class="card-header"><div class="icon icon-c"><svg><use xlink:href="#icon-person"></svg></div> 起業家グリーン</div>
                   <div class="card-body">
-                      <label class="form-label"><b>① 予算枠の割り当て:</b></label>
+                      <label class="form-label"><b>予算枠の割り当て:</b></label>
                       {% formfield player.invest_C_limit label="" %}
-                      
-                      <label class="form-label mt-3"><b>② 実際の投資額 :</b></label>
-                      <div class="slider-container">
-                          <span>0</span>
-                          {{ form.invest_C_amount }}
-                          <span class="slider-value">0</span> 万円
-                      </div>
                   </div>
               </div>
           </div>
@@ -142,15 +121,8 @@
               <div class="investment-card card-gossip">
                   <div class="card-header"><div class="icon icon-x"><svg><use xlink:href="#icon-person"></svg></div> 起業家オレンジ</div>
                   <div class="card-body">
-                      <label class="form-label"><b>① 予算枠の割り当て:</b></label>
+                      <label class="form-label"><b>予算枠の割り当て:</b></label>
                       {% formfield player.invest_X_limit label="" %}
-                      
-                      <label class="form-label mt-3"><b>② 実際の投資額 :</b></label>
-                      <div class="slider-container">
-                          <span>0</span>
-                          {{ form.invest_X_amount }}
-                          <span class="slider-value">0</span> 万円
-                      </div>
                   </div>
               </div>
           </div>

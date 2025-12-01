@@ -30,65 +30,94 @@
       <h2 id="page-title">起業家プロフィールと情報確認</h2>
 
       <div class="rule-box">
-          <h4>あなたの役割と投資のルール</h4>
+          <h4>あなたの状況</h4>
           <p>
-              あなたは投資ファンドの責任者です。4名の起業家に対し、以下の<b>4つの予算枠（上限額）</b>を1つずつ割り当て、その枠の範囲内で実際にいくら投資するかを決定します。
+              あなたは投資ファンドの責任者です。今回、<b>実績のある4名の起業家</b>が、あなたの持つ<b>「4つの予算枠（4000万、3000万、500万、100万）」</b>を巡って競い合っています。<br>
           </p>
-          <div class="text-center mb-3">
-              <span class="badge badge-limit limit-4000">4,000万円 枠</span>
-              <span class="badge badge-limit limit-3000">3,000万円 枠</span>
-              <span class="badge badge-limit limit-2000">2,000万円 枠</span>
-              <span class="badge badge-limit limit-1000">1,000万円 枠</span>
-          </div>
+
+          <h4 style="margin-top: 20px;">社内評価システムについて</h4>
+          <p>
+              あなたの会社のデータベースにある過去の取引実績に基づき、<b>自動的に「社内評価ランク」が付与されています。</b>
+          </p>
+          <ul>
+              <li><b><span style="color: #F81B02;">評価 S</span> (最高評価):</b> 過去に極めて高い利益をもたらした、最も信頼できるパートナー。</li>
+              <li><b><span style="color: #50C49F;">評価 D</span> (最低評価):</b> 過去に損失を出したり、期待を裏切った記録がある要注意人物。</li>
+              <li><b><span>評価なし</span> (データなし):</b> 今回初めて取引をするため、社内データベースに情報がない人物（※他社での実績はあるが、当社の評価は未定）。</li>
+          </ul>
       </div>
 
-      <h3>個別の起業家情報</h3>
+      <h3>候補者一覧と社内評価</h3>
 
-      {# 評判情報のサマリーをここに配置 #}
+      {# 評判情報のサマリー #}
       <div class="reputation-summary-container">
           <div class="profile-card">
               <div class="icon icon-a"><svg><use xlink:href="#icon-person"></use></svg></div>
               <span class="name">起業家レッド</span>
-              <span class="reputation-text reputation-cooperative">過去の実績：投資額の約250%回収<br>（非常に優秀）</span>
+              <span class="reputation-text reputation-cooperative" style="font-weight: bold; color: #d32f2f;">
+                  社内評価：S（最高）<br>
+              </span>
           </div>
           <div class="profile-card">
               <div class="icon icon-b"><svg><use xlink:href="#icon-person"></use></svg></div>
               <span class="name">起業家シアン</span>
-              <span class="reputation-text reputation-selfish">過去の実績：投資額の約80%回収<br>（利己的）</span>
+              <span class="reputation-text reputation-selfish" style="font-weight: bold; color: #00796b;">
+                  社内評価：D（最低）<br>
+              </span>
           </div>
           <div class="profile-card">
               <div class="icon icon-c"><svg><use xlink:href="#icon-person"></use></svg></div>
               <span class="name">起業家グリーン</span>
-              <span class="reputation-text reputation-unknown">過去の実績：データなし<br>（新規参入）</span>
+              <span class="reputation-text reputation-unknown" style="color: #555;">
+                  社内評価：なし<br>
+                  <span style="font-size: 0.85em; color: #999;">（社内データなし）</span>
+              </span>
           </div>
           <div class="profile-card">
               <div class="icon icon-x"><svg><use xlink:href="#icon-person"></use></svg></div>
               <span class="name">起業家オレンジ</span>
-              <span class="reputation-text reputation-gossip">過去の実績：データなし<br>（噂あり）</span>
+              <span class="reputation-text reputation-gossip" style="color: #555;">
+                  社内評価：なし<br>
+                  <span style="font-size: 0.85em; color: #999;">（社内データなし）</span>
+              </span>
           </div>
       </div>
       
-      <h3>内部情報（ゴシップ）</h3>
+      <div class="rule-box">
+        <h4>あなたの役割と競争環境</h4>
+        <p>
+            あなたは投資ファンドの責任者です。今回、<b>実績のある4名の起業家</b>が、あなたの持つ<b>「4つの固定予算枠」</b>を巡って激しく競い合っています。
+        </p>
 
-      {# ゴシップ表示を吹き出しデザインで強調 #}
+        <h4 style="margin-top: 15px;">予算配分の構造（ゼロサム競争）</h4>
+        <ul>
+          <li><b>予算枠：</b> 4000万、3000万、500万、100万の4つがあり、重複なく割り当てなければなりません。</li>
+          <li><b>競争の焦点：</b> 起業家たちは、<b>価値の高い予算枠」</b>を争うライバル関係にあります。</li>
+        </ul>
+      </div>
+
+      <h3>追加情報（内部ゴシップ）</h3>
+
       <div class="gossip-illustrator" style="justify-content: center; margin: 32px 0;">
           <div class="profile-card">
               <div class="icon {{ if sender_is_cooperative }}icon-a{{ else }}icon-b{{ endif }}"><svg><use xlink:href="#icon-person"></use></svg></div>
+              <span class="name" style="font-size: 0.8em; margin-top: 4px;">
+                  {{ if sender_is_cooperative }}評価Sのレッド氏{{ else }}評価Dのシアン氏{{ endif }}
+              </span>
           </div>
           <div class="speech-bubble">
               <strong>【重要情報】</strong><br>
               {{ if sender_is_cooperative }}
-                  あの誠実な評判を持つ<b>起業家レッド</b>から、以下の情報が寄せられています。<br>
-                  <i>「ここだけの話、オレンジさんは以前、。信用しない方がいい」</i>
+                  当社で最高評価を得ている<b>レッド氏</b>から、以下の情報が寄せられています。<br>
+                  <i>「ここだけの話、オレンジ氏は過去に<b>出資金を私的に流用し、契約上の配当を支払わなかった</b>ことがある。信用しない方がいい。」</i>
               {{ else }}
-                  あの利己的な評判を持つ<b>起業家シアン</b>から、以下の情報が寄せられています。<br>
-                  <i>「ここだけの話、オレンジさんは以前、共同出資者を裏切ったことがある。信用しない方がいい」</i>
+                  当社での評価が低い<b>シアン氏</b>から、以下の情報が寄せられています。<br>
+                  <i>「ここだけの話、オレンジ氏は過去に<b>出資金を私的に流用し、契約上の配当を支払わなかった</b>ことがある。信用しない方がいい。」</i>
               {{ endif }}
           </div>
       </div>
 
       <p style="text-align: center; margin-top: 32px;">
-          起業家に関する情報は以上です。次のページで、<b>予算枠の割り当てと実際の投資額</b>を決定してください。
+          以上の「社内評価」と「追加情報」を参考に、次のページで<b>予算枠の割り当て</b>を行ってください。
       </p>
 
     </div>

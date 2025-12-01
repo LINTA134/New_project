@@ -1,0 +1,182 @@
+{% extends "global/Page.html" %}
+{{ block title }}
+    事後アンケート (2/2)
+{{ endblock }}
+
+{{ block content }}
+
+<div class="experiment-container">
+
+    <div class="progress-tabs">
+      <div class="tab-button active">実験の進捗</div>
+    </div>
+    <div class="progress-content">
+      <div class="progress-steps active">
+        <div class="step completed"><div class="step-number">1</div>同意取得</div>
+        <div class="step completed"><div class="step-number">2</div>投資意思決定</div>
+        <div class="step current"><div class="step-number">3</div>アンケート</div>
+        <div class="step"><div class="step-number">4</div>デブリーフィング</div>
+      </div>
+    </div>
+
+    <div class="content-area">
+        <h2 id="page-title">事後アンケート (2/2)</h2>
+
+        <div class="question-block">
+            <label class="question-label">
+                Q3. あなたの身近な社会（学校、職場、住んでいる町、近隣など）に住む人々についてお尋ねします。
+            </label>
+            <p style="font-size: 0.9em; color: #555;">
+               次のそれぞれの文が、あなたの周りの人々にどの程度あてはまるかを答えてください。
+            </p>
+            
+            <div class="question-body">
+                <label class="question-label-sub">3-1. 彼らには、人々と知り合いになる機会がたくさんある。</label>
+                <div class="likert-scale-7">
+                    <span class="likert-label-left">1 = 全くそう思わない</span>
+                    {% for i in "1234567" %}
+                        <label><input type="radio" name="rm_1_meet_many" value="{{ i }}" required><span>{{ i }}</span></label>
+                    {% endfor %}
+                    <span class="likert-label-right">7 = 非常にそう思う</span>
+                </div>
+                
+                <label class="question-label-sub">3-2. 彼らは、初対面の人と会話を交わすことがよくある。</label>
+                <div class="likert-scale-7">
+                    <span class="likert-label-left">1 = 全くそう思わない</span>
+                    {% for i in "1234567" %}
+                        <label><input type="radio" name="rm_2_talk_strangers" value="{{ i }}" required><span>{{ i }}</span></label>
+                    {% endfor %}
+                    <span class="likert-label-right">7 = 非常にそう思う</span>
+                </div>
+
+                <label class="question-label-sub">3-3. 彼らは、ふだんどんな人たちと付き合うかを、自分で選ぶことができる。</label>
+                <div class="likert-scale-7">
+                    <span class="likert-label-left">1 = 全くそう思わない</span>
+                    {% for i in "1234567" %}
+                        <label><input type="radio" name="rm_3_choose_partners" value="{{ i }}" required><span>{{ i }}</span></label>
+                    {% endfor %}
+                    <span class="likert-label-right">7 = 非常にそう思う</span>
+                </div>
+
+                <label class="question-label-sub">3-4. 彼らには、新しい友人を見つける機会があまりない。</label>
+                <div class="likert-scale-7">
+                    <span class="likert-label-left">1 = 全くそう思わない</span>
+                    {% for i in "1234567" %}
+                        <label><input type="radio" name="rm_4_few_friends_rev" value="{{ i }}" required><span>{{ i }}</span></label>
+                    {% endfor %}
+                    <span class="likert-label-right">7 = 非常にそう思う</span>
+                </div>
+
+                <label class="question-label-sub">3-5. 彼らにとって見知らぬ人と会話することはそうあることではない。</label>
+                <div class="likert-scale-7">
+                    <span class="likert-label-left">1 = 全くそう思わない</span>
+                    {% for i in "1234567" %}
+                        <label><input type="radio" name="rm_5_uncommon_talk_rev" value="{{ i }}" required><span>{{ i }}</span></label>
+                    {% endfor %}
+                    <span class="likert-label-right">7 = 非常にそう思う</span>
+                </div>
+
+                <label class="question-label-sub">3-6. もし現在所属している集団が気に入らなければ、彼らは新しい集団に移っていくだろう。</label>
+                <div class="likert-scale-7">
+                    <span class="likert-label-left">1 = 全くそう思わない</span>
+                    {% for i in "1234567" %}
+                        <label><input type="radio" name="rm_6_leave_for_better" value="{{ i }}" required><span>{{ i }}</span></label>
+                    {% endfor %}
+                    <span class="likert-label-right">7 = 非常にそう思う</span>
+                </div>
+
+                <label class="question-label-sub">3-7. 彼らにとって、付き合う相手を自由に選べないことはよくある。</label>
+                <div class="likert-scale-7">
+                    <span class="likert-label-left">1 = 全くそう思わない</span>
+                    {% for i in "1234567" %}
+                        <label><input type="radio" name="rm_7_cannot_choose_rev" value="{{ i }}" required><span>{{ i }}</span></label>
+                    {% endfor %}
+                    <span class="likert-label-right">7 = 非常にそう思う</span>
+                </div>
+
+                <label class="question-label-sub">3-8. 彼らが新しい人たちと出会うのは簡単なことだ。</label>
+                <div class="likert-scale-7">
+                    <span class="likert-label-left">1 = 全くそう思わない</span>
+                    {% for i in "1234567" %}
+                        <label><input type="radio" name="rm_8_easy_to_meet" value="{{ i }}" required><span>{{ i }}</span></label>
+                    {% endfor %}
+                    <span class="likert-label-right">7 = 非常にそう思う</span>
+                </div>
+
+                <label class="question-label-sub" style="margin-top: 0;">3-9. この項目には「2」と答えてください。</label>
+                <div class="likert-scale-7">
+                    <span class="likert-label-left">1 = 全くそう思わない</span>
+                    {% for i in "1234567" %}
+                        <label><input type="radio" name="attention_check" value="{{ i }}" required><span>{{ i }}</span></label>
+                    {% endfor %}
+                    <span class="likert-label-right">7 = 非常にそう思う</span>
+                </div>
+
+                <label class="question-label-sub">3-10. たとえ所属する集団に満足していなかったとしても、彼らはたいていそこに居続けることになる。</label>
+                <div class="likert-scale-7">
+                    <span class="likert-label-left">1 = 全くそう思わない</span>
+                    {% for i in "1234567" %}
+                        <label><input type="radio" name="rm_9_stay_in_group_rev" value="{{ i }}" required><span>{{ i }}</span></label>
+                    {% endfor %}
+                    <span class="likert-label-right">7 = 非常にそう思う</span>
+                </div>
+
+                <label class="question-label-sub">3-11. 彼らはどの集団や組織に所属するかを自分で選ぶことができる。</label>
+                <div class="likert-scale-7">
+                    <span class="likert-label-left">1 = 全くそう思わない</span>
+                    {% for i in "1234567" %}
+                        <label><input type="radio" name="rm_10_choose_groups" value="{{ i }}" required><span>{{ i }}</span></label>
+                    {% endfor %}
+                    <span class="likert-label-right">7 = 非常にそう思う</span>
+                </div>
+
+                <label class="question-label-sub">3-12. たとえ現在の対人関係に満足していなくても、彼らはそこに留まり続けるしかないことがよくある。</label>
+                <div class="likert-scale-7">
+                    <span class="likert-label-left">1 = 全くそう思わない</span>
+                    {% for i in "1234567" %}
+                        <label><input type="radio" name="rm_11_must_stay_rel_rev" value="{{ i }}" required><span>{{ i }}</span></label>
+                    {% endfor %}
+                    <span class="likert-label-right">7 = 非常にそう思う</span>
+                </div>
+
+                <label class="question-label-sub">3-13. たとえ現在所属する集団から離れたいと思っても、彼らはそこに留まらざるを得ないことがよくある。</label>
+                <div class="likert-scale-7">
+                    <span class="likert-label-left">1 = 全くそう思わない</span>
+                    {% for i in "1234567" %}
+                        <label><input type="radio" name="rm_12_must_stay_group_rev" value="{{ i }}" required><span>{{ i }}</span></label>
+                    {% endfor %}
+                    <span class="likert-label-right">7 = 非常にそう思う</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="question-block">
+            <label class="question-label">Q4. あなたの基本情報を教えてください。</label>
+            <div class="question-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        {% formfield player.age %}
+                    </div>
+                    <div class="col-md-6">
+                        {% formfield player.gender %}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="question-block">
+            <label class="question-label">Q5. その他、気になったことや感想があればご自由にお書きください（任意）</label>
+            <div class="question-body">
+                {% formfield player.feedback label="" %}
+            </div>
+        </div>
+
+    </div>
+
+    <div class="navigation-footer">
+        <button class="btn btn-primary">回答を送信して次へ</button>
+    </div>
+
+</div>
+
+{{ endblock }}

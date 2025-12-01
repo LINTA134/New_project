@@ -5,7 +5,6 @@ class Introduction(Page):
     def is_displayed(self):
         return self.round_number == 1
 
-# --- NEW PAGE: プロフィール確認ページ ---
 class ProfileReview(Page):
     def vars_for_template(self):
         # ゴシップの発信者をテンプレートに渡す
@@ -14,7 +13,6 @@ class ProfileReview(Page):
         }
     def is_displayed(self):
         return self.round_number == 1
-# ------------------------------------------
 
 class GossipStimuli(Page):
     form_model = 'player'
@@ -39,7 +37,7 @@ class GossipStimuli(Page):
             values['invest_X_limit']
         ]
         if len(set(limits)) != 4:
-            return "4つの予算枠（4000万、3000万、2000万、1000万）を、重複しないように4人の起業家に割り当ててください。"
+            return "4つの予算枠（4000万、3000万、500万、100万）を、重複しないように4人の起業家に割り当ててください。"
 
         errors = []
         if values['invest_A_amount'] > values['invest_A_limit']:
@@ -56,9 +54,21 @@ class GossipStimuli(Page):
 
 class Questionnaire(Page):
     form_model = 'player'
+    # 1ページ目はゴシップと意図の評価のみ
     form_fields = [
-        'intent_guess',
-        'trust_1', 'trust_2', 'trust_3',
+        'gossip_is_true', 'orange_is_risky', 'orange_is_unethical',
+        'intent_selfish', 'intent_altruistic', 'intent_fact_telling',
+    ]
+
+# 新規追加: 関係流動性とアテンションチェック、デモグラフィック
+class RelationalMobility(Page):
+    form_model = 'player'
+    form_fields = [
+        'rm_1_meet_many', 'rm_2_talk_strangers', 'rm_3_choose_partners',
+        'rm_4_few_friends_rev', 'rm_5_uncommon_talk_rev', 'rm_6_leave_for_better',
+        'attention_check', 
+        'rm_7_cannot_choose_rev', 'rm_8_easy_to_meet', 'rm_9_stay_in_group_rev',
+        'rm_10_choose_groups', 'rm_11_must_stay_rel_rev', 'rm_12_must_stay_group_rev',
         'age', 'gender', 'feedback'
     ]
 
@@ -71,5 +81,6 @@ page_sequence = [
     ProfileReview,
     GossipStimuli,
     Questionnaire,
+    RelationalMobility, 
     Debrief
 ]

@@ -37,44 +37,44 @@
       <div class="rule-box" style="background-color: #fff; border: 1px solid #ccc;">
           <h4>参考情報（プロフィールとゴシップ）</h4>
           
-          {# 1. プロフィール一覧 #}
+          {# 1. プロフィール一覧 (S/D評価に更新) #}
           <div class="reputation-summary-container" style="margin-bottom: 16px;">
               <div class="profile-card">
                   <div class="icon icon-a"><svg><use xlink:href="#icon-person"></use></svg></div>
                   <span class="name">起業家レッド</span>
-                  <span class="reputation-text reputation-cooperative">過去の実績：投資額の約250%還元</span>
+                  <span class="reputation-text reputation-cooperative">社内評価：S</span>
               </div>
               <div class="profile-card">
                   <div class="icon icon-b"><svg><use xlink:href="#icon-person"></use></svg></div>
                   <span class="name">起業家シアン</span>
-                  <span class="reputation-text reputation-selfish">利己的（10%還元）</span>
+                  <span class="reputation-text reputation-selfish">社内評価：D</span>
               </div>
               <div class="profile-card">
                   <div class="icon icon-c"><svg><use xlink:href="#icon-person"></use></svg></div>
                   <span class="name">起業家グリーン</span>
-                  <span class="reputation-text reputation-unknown">新人（情報なし）</span>
+                  <span class="reputation-text reputation-unknown">社内評価：なし</span>
               </div>
               <div class="profile-card">
                   <div class="icon icon-x"><svg><use xlink:href="#icon-person"></use></svg></div>
                   <span class="name">起業家オレンジ</span>
-                  <span class="reputation-text reputation-gossip">噂あり</span>
+                  <span class="reputation-text reputation-gossip">社内評価：なし</span>
               </div>
           </div>
 
-          {# 2. ゴシップ #}
+          {# 2. ゴシップ (内容を更新) #}
           <div class="gossip-illustrator" style="margin-bottom: 0;">
               <div class="profile-card">
                   <div class="icon {{ if sender_is_cooperative }}icon-a{{ else }}icon-b{{ endif }}"><svg><use xlink:href="#icon-person"></use></svg></div>
                   <span class="name" style="font-size: 0.8em;">
-                      {{ if sender_is_cooperative }}起業家レッド{{ else }}起業家シアン{{ endif }}
+                      {{ if sender_is_cooperative }}起業家レッド (S評価){{ else }}起業家シアン (D評価){{ endif }}
                   </span>
               </div>
               <div class="speech-bubble">
                   <strong>【重要情報】</strong><br>
                   {{ if sender_is_cooperative }}
-                      <i>「ここだけの話、オレンジ氏は以前、共同出資者を裏切ったことがある。信用しない方がいい」</i>
+                      <i>「ここだけの話、オレンジ氏は過去に<b>出資金を私的に流用し、契約上の配当を支払わなかった</b>ことがある。信用しない方がいい。」</i>
                   {{ else }}
-                      <i>「ここだけの話、オレンジ氏は以前、共同出資者を裏切ったことがある。信用しない方がいい」</i>
+                      <i>「ここだけの話、オレンジ氏は過去に<b>出資金を私的に流用し、契約上の配当を支払わなかった</b>ことがある。信用しない方がいい。」</i>
                   {{ endif }}
               </div>
           </div>
@@ -86,7 +86,7 @@
           {# 起業家レッド #}
           <div class="col-md-6 mb-4">
               <div class="investment-card card-cooperative">
-                  <div class="card-header"><div class="icon icon-a"><svg><use xlink:href="#icon-person"></svg></div> 起業家A</div>
+                  <div class="card-header"><div class="icon icon-a"><svg><use xlink:href="#icon-person"></svg></div> 起業家レッド</div>
                   <div class="card-body">
                       <label class="form-label"><b>① 予算枠の割り当て:</b></label>
                       {% formfield player.invest_A_limit label="" %}
@@ -104,7 +104,7 @@
           {# 起業家シアン #}
           <div class="col-md-6 mb-4">
               <div class="investment-card card-selfish">
-                  <div class="card-header"><div class="icon icon-b"><svg><use xlink:href="#icon-person"></svg></div> 起業家B</div>
+                  <div class="card-header"><div class="icon icon-b"><svg><use xlink:href="#icon-person"></svg></div> 起業家シアン</div>
                   <div class="card-body">
                       <label class="form-label"><b>① 予算枠の割り当て:</b></label>
                       {% formfield player.invest_B_limit label="" %}
@@ -122,7 +122,7 @@
           {# 起業家グリーン #}
           <div class="col-md-6 mb-4">
               <div class="investment-card card-neutral">
-                  <div class="card-header"><div class="icon icon-c"><svg><use xlink:href="#icon-person"></svg></div> 起業家C</div>
+                  <div class="card-header"><div class="icon icon-c"><svg><use xlink:href="#icon-person"></svg></div> 起業家グリーン</div>
                   <div class="card-body">
                       <label class="form-label"><b>① 予算枠の割り当て:</b></label>
                       {% formfield player.invest_C_limit label="" %}
@@ -140,7 +140,7 @@
           {# 起業家オレンジ #}
           <div class="col-md-6 mb-4">
               <div class="investment-card card-gossip">
-                  <div class="card-header"><div class="icon icon-x"><svg><use xlink:href="#icon-person"></svg></div> 起業家X</div>
+                  <div class="card-header"><div class="icon icon-x"><svg><use xlink:href="#icon-person"></svg></div> 起業家オレンジ</div>
                   <div class="card-body">
                       <label class="form-label"><b>① 予算枠の割り当て:</b></label>
                       {% formfield player.invest_X_limit label="" %}

@@ -13,14 +13,15 @@
     <div class="progress-content">
       <div class="progress-steps active">
         <div class="step completed"><div class="step-number">1</div>同意取得</div>
-        <div class="step completed"><div class="step-number">2</div>投資意思決定</div>
-        <div class="step current"><div class="step-number">3</div>アンケート</div>
-        <div class="step"><div class="step-number">4</div>デブリーフィング</div>
+        <div class="step completed"><div class="step-number">2</div>プロフィール確認</div>
+        <div class="step completed"><div class="step-number">3</div>投資意思決定</div>
+        <div class="step current"><div class="step-number">4</div>アンケート</div>
+        <div class="step"><div class="step-number">5</div>デブリーフィング</div>
       </div>
     </div>
 
     <div class="content-area">
-        <h2 id="page-title">事後アンケート</h2>
+        <h2 id="page-title">事後アンケート（１/２）</h2>
         <p>
             実験へのご協力、ありがとうございました。<br>
             最後に、いくつかの質問にお答えください。これですべて終了となります。
@@ -28,83 +29,71 @@
 
         <div class="question-block">
             <label class="question-label">
-                Q1. 実験中、あなたは「X氏は裏切り者だ」という情報を受け取りました。<br>
-                この情報を伝えた人物の「意図」として、あなたが最も近いと感じたものはどれですか？
+                Q1. 起業家オレンジ氏に対するあなたの評価を教えてください。
             </label>
-            <div class="question-body">
-                {# oTree標準のラジオボタンを整形して表示 #}
-                {% formfield player.intent_guess label="" %}
+            <p style="font-size: 0.9em; color: #555;">以下の項目について、どの程度あてはまりますか？</p>
+
+            <label class="question-label-sub">1-1. ゴシップの内容（オレンジ氏が配当を支払わなかったこと）は、事実である可能性が高いと思う。</label>
+            <div class="likert-scale-7">
+                <span class="likert-label-left">1 = 全くそう思わない</span>
+                {% for i in "1234567" %}
+                    <label><input type="radio" name="gossip_is_true" value="{{ i }}" required><span>{{ i }}</span></label>
+                {% endfor %}
+                <span class="likert-label-right">7 = 非常にそう思う</span>
+            </div>
+
+            <label class="question-label-sub">1-2. 起業家オレンジは、投資するにはリスクが高すぎる人物だと思う。</label>
+            <div class="likert-scale-7">
+                <span class="likert-label-left">1 = 全くそう思わない</span>
+                {% for i in "1234567" %}
+                    <label><input type="radio" name="orange_is_risky" value="{{ i }}" required><span>{{ i }}</span></label>
+                {% endfor %}
+                <span class="likert-label-right">7 = 非常にそう思う</span>
+            </div>
+
+            <label class="question-label-sub">1-3. 起業家オレンジは、倫理観に欠けた人物だと思う。</label>
+            <div class="likert-scale-7">
+                <span class="likert-label-left">1 = 全くそう思わない</span>
+                {% for i in "1234567" %}
+                    <label><input type="radio" name="orange_is_unethical" value="{{ i }}" required><span>{{ i }}</span></label>
+                {% endfor %}
+                <span class="likert-label-right">7 = 非常にそう思う</span>
             </div>
         </div>
 
         <div class="question-block">
             <label class="question-label">
-                Q2. あなたご自身について、以下の項目はどの程度あてはまりますか？
+                Q2. あなたに情報（ゴシップ）を伝えた人物の「意図」について、どの程度あてはまりますか？
             </label>
-            <div class="question-body">
-                
-                <label class="question-label-sub">2-1. ほとんどの人は基本的に正直だと思う</label>
-                <div class="likert-scale-7">
-                    <span class="likert-label-left">全くそう思わない</span>
-                    <label><input type="radio" name="trust_1" value="1" required><span>1</span></label>
-                    <label><input type="radio" name="trust_1" value="2"><span>2</span></label>
-                    <label><input type="radio" name="trust_1" value="3"><span>3</span></label>
-                    <label><input type="radio" name="trust_1" value="4"><span>4</span></label>
-                    <label><input type="radio" name="trust_1" value="5"><span>5</span></label>
-                    <label><input type="radio" name="trust_1" value="6"><span>6</span></label>
-                    <label><input type="radio" name="trust_1" value="7"><span>7</span></label>
-                    <span class="likert-label-right">非常にそう思う</span>
-                </div>
+            <p style="font-size: 0.9em; color: #555;">以下の項目について、どの程度あてはまりますか？</p>
 
-                <label class="question-label-sub">2-2. ほとんどの人は信頼できると思う</label>
-                <div class="likert-scale-7">
-                    <span class="likert-label-left">全くそう思わない</span>
-                    <label><input type="radio" name="trust_2" value="1" required><span>1</span></label>
-                    <label><input type="radio" name="trust_2" value="2"><span>2</span></label>
-                    <label><input type="radio" name="trust_2" value="3"><span>3</span></label>
-                    <label><input type="radio" name="trust_2" value="4"><span>4</span></label>
-                    <label><input type="radio" name="trust_2" value="5"><span>5</span></label>
-                    <label><input type="radio" name="trust_2" value="6"><span>6</span></label>
-                    <label><input type="radio" name="trust_2" value="7"><span>7</span></label>
-                    <span class="likert-label-right">非常にそう思う</span>
-                </div>
+            <label class="question-label-sub">2-1. この情報を伝えた人物は、自分の予算枠を有利にするため、意図的にオレンジ氏の評判を貶めようとしたと思う。</label>
+            <div class="likert-scale-7">
+                <span class="likert-label-left">1 = 全くそう思わない</span>
+                {% for i in "1234567" %}
+                    <label><input type="radio" name="intent_selfish" value="{{ i }}" required><span>{{ i }}</span></label>
+                {% endfor %}
+                <span class="likert-label-right">7 = 非常にそう思う</span>
+            </div>
 
-                <label class="question-label-sub">2-3. ほとんどの人は基本的に善良で親切だと思う</label>
-                <div class="likert-scale-7">
-                    <span class="likert-label-left">全くそう思わない</span>
-                    <label><input type="radio" name="trust_3" value="1" required><span>1</span></label>
-                    <label><input type="radio" name="trust_3" value="2"><span>2</span></label>
-                    <label><input type="radio" name="trust_3" value="3"><span>3</span></label>
-                    <label><input type="radio" name="trust_3" value="4"><span>4</span></label>
-                    <label><input type="radio" name="trust_3" value="5"><span>5</span></label>
-                    <label><input type="radio" name="trust_3" value="6"><span>6</span></label>
-                    <label><input type="radio" name="trust_3" value="7"><span>7</span></label>
-                    <span class="likert-label-right">非常にそう思う</span>
-                </div>
+            <label class="question-label-sub">2-2. この情報を伝えた人物は、私（あなた）が損をしないようにという親切心から、真実を伝えてくれたと思う。</label>
+            <div class="likert-scale-7">
+                <span class="likert-label-left">1 = 全くそう思わない</span>
+                {% for i in "1234567" %}
+                    <label><input type="radio" name="intent_altruistic" value="{{ i }}" required><span>{{ i }}</span></label>
+                {% endfor %}
+                <span class="likert-label-right">7 = 非常にそう思う</span>
+            </div>
+
+            <label class="question-label-sub">2-3. この情報を伝えた人物は、特別な意図はなく、単に事実をありのままに報告しただけだと思う。</label>
+            <div class="likert-scale-7">
+                <span class="likert-label-left">1 = 全くそう思わない</span>
+                {% for i in "1234567" %}
+                    <label><input type="radio" name="intent_fact_telling" value="{{ i }}" required><span>{{ i }}</span></label>
+                {% endfor %}
+                <span class="likert-label-right">7 = 非常にそう思う</span>
             </div>
         </div>
-
-        <div class="question-block">
-            <label class="question-label">Q3. あなたの基本情報を教えてください。</label>
-            <div class="question-body">
-                <div class="row">
-                    <div class="col-md-6">
-                        {% formfield player.age %}
-                    </div>
-                    <div class="col-md-6">
-                        {% formfield player.gender %}
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="question-block">
-            <label class="question-label">Q4. その他、気になったことや感想があればご自由にお書きください（任意）</label>
-            <div class="question-body">
-                {% formfield player.feedback label="" %}
-            </div>
-        </div>
-
     </div>
 
     <div class="navigation-footer">
